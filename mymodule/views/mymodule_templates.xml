@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<openerp>
+  <data>
+    <template id = "index">
+      <title>MyModule</title>
+      <t t-foreach="fruits" t-as="fruit">
+        <p><t t-esc="fruit"/></p></t>
+    </template>
+  </data>
+</openerp>
