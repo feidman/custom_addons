@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+  <data>
+   
+     <!-- form views -->  
+   <record id="view_form_todo_task" model="ir.ui.view">
+	  <field name="name">To-do Task Form</field>
+	  <field name="model">todo.task</field>
+	  <field name="arch" type="xml">
+	  
+	  
+	  	<form string="To-do Task">
+	  	  <header>
+	  	  <!-- buttons goes here -->
+	  	  	<button name="do_toggle_done" type="object" string="Toggle Done" class="oe_highlight"/>
+	  	  	<button name="do_clear_done" type="object" string="Clear All Done"/>
+	  	  </header>
+	  	  
+	  	  	  
+	  	  <sheet>
+	  	  	<group name="group_top">
+	  	  	<group name="group_left">
+	  			<field name="name"/>
+	  		</group>
+	  		<group name="group_right">
+	  		    <field name="is_done"/>
+	  		    <field name="active" readonly="1"/>
+	  		</group>
+	  		</group>
+	  	  </sheet>
+	  		
+	  </form>
+	  		
+	  		
+	  </field>
+	</record>
+   
+   
+   <!-- tree views -->  
+   <record id="view_tree_todo_task" model="ir.ui.view">
+   	<field name="name">To-do Task Tree</field>
+   	<field name="model">todo.task</field>
+   	<field name="arch" type="xml">
+   		<tree color="gray:is_done==true">
+   			<field name="name"/>
+   			<field name="is_done"/>
+   		</tree>
+   	</field>
+   </record>
+
+
+
+   <!-- search views -->  
+   <record id="view_filter_todo_task" model="ir.ui.view">
+   	<field name="name">To-do Task Filter</field>
+   	<field name="model">todo.task</field>
+   	<field name="arch" type="xml">
+   		<search>
+   			<field name="name"/>
+   			<filter string="Not Done"
+   				domain="[('is_done','=',False)]"/>
+   			<filter string="Done"
+   				domain="[('is_done','!=',False)]"/>
+   			</search>
+   		</field>
+   	</record>
+
+
+
+
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_todo_task">
+      <field name="name">To-do Task</field>
+      <field name="res_model">todo.task</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Top menu item -->
+ 
+    <menuitem name="To-Do Application" id="to-do_application.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="to-do_application.menu_1" parent="to-do_application.menu_root"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="List" id="to-do_application.menu_1_list" parent="to-do_application.menu_1"
+              action="action_todo_task"/>
+
+  </data>
+</openerp>

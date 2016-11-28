@@ -1,13 +1,3 @@
-#This is a tutorial module following the exercises in book "Odoo Development Essentials"
-
-
-{
-	'name':'To-Do Application',
-	'description':'Manage your personal Tasks with this moudule.',
-	'author':'JSGOU',
-	'depends':['mail'],
-	'application':True,
-}
 # -*- coding: utf-8 -*-
 {
     'name': "To-Do Application",
@@ -16,9 +6,11 @@
         Short (1 phrase/line) summary of the module's purpose, used as
         subtitle on modules listing or apps.openerp.com""",
 
-    'description': 'Manage your personal Tasks with this moudule.',
+    'description': """
+        Long description of module's purpose
+    """,
 
-    'author': "JSGOU",
+    'author': "My Company",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -32,9 +24,10 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/to-do_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
