@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+
+		<!-- Form view -->
+		<record model="ir.ui.view" id="todo_task_view_form">
+			<field name="name">To-do Task Form</field>
+			<field name="model">todo.task</field>
+			<field name="arch" type="xml">
+				<form string="To-do Task">
+
+
+					<header>
+						<button name="do_toggle_done" type="object" 
+							string="Toggle Done" class="oe_highlight" />
+						<button name="do_clear_done" type="object"
+							string="Clear All Done" />
+					</header>
+
+
+					<sheet>
+						<group name="group_top">
+							<group name="group_left">
+								<field name="name"/>
+							</group>
+							<group name="group_right">
+								<field name="is_done"/>
+								<field name="active" readonly="1"/>
+							</group>
+						</group>
+					</sheet>					
+				</form>
+			</field>
+
+
+		</record>
+
+
+		<!-- Tree view -->
+		<record model="ir.ui.view" id="todo_task_view_tree">
+			<field name="name">To-do Task Tree</field>
+			<field name="model">todo.task</field>
+			<field name="arch" type="xml">
+				<tree colors="gray:is_done==True">
+					<field name="name"/>
+					<field name="is_done"/>
+				</tree>
+			</field>
+		</record>
+
+
+
+		<!-- Search view -->
+		<record model="ir.ui.view" id="todo_task_view_search">
+			<field name="name">To-do Task search</field>
+			<field name="model">todo.task</field>
+			<field name="arch" type="xml">
+				<search>
+					<filter string="Not Done"
+					domain="[('is_done','=',False)]"/>
+					<filter string="Done"
+					domain="[('is_done','!=',False)]"/>		
+				</search>
+			</field>
+		</record>
+		
+
+		<!-- Action to open To-Do Task list -->
+		<record model="ir.actions.act_window" id="action_todo_task">
+			<field name="name">To-Do Task Window</field>
+			<field name="res_model">todo.task</field>
+			<field name="view_model">tree,form</field>
+		</record>
+
+
+		<!-- Menuitem to open To-Do Task list -->
+        <menuitem name="Task Application" id="task_application_menu_root" />
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem name="To-Do Task" id="todo_task_menu" 
+                  parent="task_application_menu_root"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem name="To-Do Tasks" id="todo_task_todotasks_menu"
+        	parent="todo_task_menu" action="action_todo_task"/>
+
+
+
+    </data>
+</openerp>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<tree string="Users">
-                    <field name="name"/>
-                    <field name="login"/>
-                    <field name="lang"/>
-                    <field name="login_date"/>
-                </tree>
